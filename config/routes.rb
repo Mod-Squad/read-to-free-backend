@@ -5,4 +5,9 @@ Rails.application.routes.draw do
   delete '/sign-out/:id' => 'users#signout'
   patch '/change-password/:id' => 'users#changepw'
   resources :users, only: [:index, :show]
+  get '/books', to: 'books#index'
+  get '/books/:id', to: 'books#show'
+  post '/add-book', to: 'books#addbook'
+  patch '/books/:id', to: 'books#update'
+  delete '/books/:id', to: 'books#destroy'
 end
