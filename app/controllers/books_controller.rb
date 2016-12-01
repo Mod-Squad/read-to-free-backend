@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show]
+  before_action :set_book, only: [:show, :update]
 
   def set_book
     @book = Book.find(params[:id])
@@ -24,6 +24,14 @@ class BooksController < ApplicationController
 
     if @book.save
       render json: @book, status: :created, location: @books
+    else
+      render json: @book.errors, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    if @book.update(book_params)
+      head :no_content
     else
       render json: @book.errors, status: :unprocessable_entity
     end
