@@ -1,8 +1,8 @@
-class BooksController < ApplicationController
+class BooksController < OpenReadController
   before_action :set_book, only: [:show, :update, :destroy]
 
   def set_book
-    @book = Book.find(params[:id])
+    @book = current_user.books.find(params[:id])
   end
 
   def book_params
@@ -20,10 +20,10 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(book_params)
+    @book = current_user.books.build(book_params)
 
     if @book.save
-      render json: @book, status: :created, location: @books
+      render json: @book, status: :created
     else
       render json: @book.errors, status: :unprocessable_entity
     end
