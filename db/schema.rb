@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161201152937) do
+ActiveRecord::Schema.define(version: 20161202183337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 20161201152937) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
+
+  create_table "bookshelves", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "bookshelves", ["book_id"], name: "index_bookshelves_on_book_id", using: :btree
+  add_index "bookshelves", ["user_id"], name: "index_bookshelves_on_user_id", using: :btree
 
   create_table "examples", force: :cascade do |t|
     t.text     "text",       null: false
@@ -46,5 +56,7 @@ ActiveRecord::Schema.define(version: 20161201152937) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["token"], name: "index_users_on_token", unique: true, using: :btree
 
+  add_foreign_key "bookshelves", "books"
+  add_foreign_key "bookshelves", "users"
   add_foreign_key "examples", "users"
 end
