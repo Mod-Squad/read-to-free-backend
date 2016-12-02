@@ -2,11 +2,12 @@ class BooksController < OpenReadController
   before_action :set_book, only: [:show, :update, :destroy]
 
   def set_book
-    @book = current_user.books.find(params[:id])
+    @book = Book.find(params[:id])
   end
 
   def book_params
-    params.require(:book).permit(:title, :author_last_name, :author_first_name, :genre, :rating)
+    params.require(:book).permit(:title, :author_last_name,
+                                 :author_first_name, :genre, :rating)
   end
 
   def index
@@ -20,7 +21,7 @@ class BooksController < OpenReadController
   end
 
   def create
-    @book = current_user.books.build(book_params)
+    @book = Book.new(book_params)
 
     if @book.save
       render json: @book, status: :created
