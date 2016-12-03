@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  # resources :bookshelves, except: [:new, :edit]
-  get '/bookshelves', to: 'bookshelves#index'
-  get '/bookehelves/:id', to: 'bookshelves#show'
-  post '/bookshelves', to: 'bookshelves#create'
-  patch '/bookshelves/:id', to: 'bookshelves#update'
-  delete '/bookshelves/:id', to: 'bookshelves#destroy'
+  # resources :reviews, except: [:new, :edit]
+  get '/reviews', to: 'reviews#index'
+  get '/reviews/:id', to: 'reviews#show'
+  post '/reviews', to: 'reviews#create'
+  patch '/reviews/:id', to: 'reviews#update'
+  delete '/reviews/:id', to: 'reviews#destroy'
   resources :examples, except: [:new, :edit]
   post '/sign-up' => 'users#signup'
   post '/sign-in' => 'users#signin'
