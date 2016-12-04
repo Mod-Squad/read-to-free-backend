@@ -1,4 +1,4 @@
-class ReviewsController < OpenReadController
+class ReviewsController < ProtectedController
   before_action :set_review, only: [:show, :update, :destroy]
 
   # GET /reviews
