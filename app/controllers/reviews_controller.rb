@@ -4,7 +4,7 @@ class ReviewsController < ProtectedController
   # GET /reviews
   # GET /reviews.json
   def index
-    @reviews = Review.all
+    @reviews = current_user.reviews.all
 
     render json: @reviews
   end
@@ -30,7 +30,7 @@ class ReviewsController < ProtectedController
   # PATCH/PUT /reviews/1
   # PATCH/PUT /reviews/1.json
   def update
-    @review = Review.find(params[:id])
+    @review = current_user.reviews.find(params[:id])
 
     if @review.update(review_params)
       head :no_content
