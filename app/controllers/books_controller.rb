@@ -6,8 +6,7 @@ class BooksController < OpenReadController
   end
 
   def book_params
-    params.require(:book).permit(:title, :author_last_name,
-                                 :author_first_name)
+    params.require(:book).permit(:title, :author_last_name, :author_first_name)
   end
 
   def index
