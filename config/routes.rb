@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
   get '/books', to: 'books#index'
   get '/books/:id', to: 'books#show'
+  get '/search-books', to: 'books#search'
   post '/books', to: 'books#create'
   patch '/books/:id', to: 'books#update'
   delete '/books/:id', to: 'books#destroy'
