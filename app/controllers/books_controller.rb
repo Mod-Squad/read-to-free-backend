@@ -16,7 +16,8 @@ class BooksController < OpenReadController
   end
 
   def search
-    @books = Book.select('books.title, books.author_last_name, books.author_first_name').where('books.title like ? ', "%#{book[title]}%")
+    puts book_params[:title]
+    @books = Book.select('books.title, books.author_last_name, books.author_first_name').where('books.title like ? ', "%#{book_params[:title]}%")
 
     render json: @books
   end
