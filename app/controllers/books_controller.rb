@@ -18,7 +18,7 @@ class BooksController < OpenReadController
   def search
     # puts book_params[:title]
     # test what is returned in server
-    @books = Book.select('books.title, books.author_last_name, books.author_first_name').where('lower(books.title) like ?  ', "%#{book_params[:title]}%".downcase)
+    @books = Book.select('books.title, books.author_last_name, books.author_first_name, book.id').where('lower(books.title) like ?  ', "%#{book_params[:title]}%".downcase)
 
     render json: @books
   end
