@@ -49,11 +49,11 @@ class ReviewsController < ProtectedController
 
   private
 
-    def set_review
-      @review = current_user.reviews.find(params[:id])
-    end
+  def set_review
+    @review = current_user.reviews.find(params[:id])
+  end
 
-    def review_params
-      params.require(:review).permit(:user_id, :book_id, :comment, :rating)
-    end
+  def review_params
+    params.require(:review).permit(:user_id, :book_id, :comment, :rating)
+  end
 end
